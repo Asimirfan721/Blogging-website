@@ -31,6 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
+         
         return view('posts.create'); // Points to resources/views/posts/create.blade.php
     }
 

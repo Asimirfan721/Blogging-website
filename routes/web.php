@@ -20,7 +20,7 @@ use App\Http\Controllers\PostController;
 Route::get('/', [PostController::class, 'index'])->name('home');
 
 // Route to view a single post by its unique slug.
-Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+// Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 
 // Authenticated Routes (Accessible only to logged-in users)
