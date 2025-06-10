@@ -69,7 +69,7 @@ class PostController extends Controller
             return redirect()->route('dashboard')->with('success', 'Post created successfully!');
 
         } catch (ValidationException $e) {
-            // Redirect back with validation errors
+      
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }
