@@ -9,6 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    {{-- ADDED: Simple test message --}}
+                    <p style="color: red; font-weight: bold; text-align: center;">If you see this, the Blade file is rendering!</p>
+
                     <form method="POST" action="{{ route('posts.store') }}">
                         @csrf
 
@@ -20,7 +23,6 @@
 
                         <div class="mt-4">
                             <x-input-label for="content" :value="__('Content')" />
-                            {{-- IMPORTANT: Now using x-textarea, which we will define in Step 2 --}}
                             <x-textarea id="content" class="block mt-1 w-full" name="content" rows="10" required>{{ old('content') }}</x-textarea>
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
