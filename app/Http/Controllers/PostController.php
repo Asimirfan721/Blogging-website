@@ -65,7 +65,7 @@ class PostController extends Controller
                 'status' => 'published', // Automatically publish for now, can be 'draft'
             ]);
 
-            // Redirect back to the dashboard with a success message
+           
             return redirect()->route('dashboard')->with('success', 'Post created successfully!');
 
         } catch (ValidationException $e) {
