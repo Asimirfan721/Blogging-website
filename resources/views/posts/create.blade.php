@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{-- ADDED: Simple test message --}}
-                    <p style="color: red; font-weight: bold; text-align: center;">If you see this, the Blade file is rendering!</p>
+                    <p style="color: red; font-weight: bold; text-align: center;"> </p>
 
                     <form method="POST" action="{{ route('posts.store') }}">
                         @csrf
