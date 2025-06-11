@@ -15,13 +15,16 @@ use App\Http\Controllers\PostController;
 |
 */
 
+// Redirect root URL to /home
+Route::get('/', function () {
+    return redirect('/home');
+});
+
 // Public Routes (Accessible by anyone)
 // This will be your application's homepage, displaying a list of posts.
-Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/home', [PostController::class, 'index'])->name('home');
 
 // Route to view a single post by its unique slug.
-
-
 
 // Authenticated Routes (Accessible only to logged-in users)
 Route::middleware('auth')->group(function () {
