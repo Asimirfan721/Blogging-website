@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+    <head> 
+        <h1> Create a Blog Worth Sharing</h1>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name', 'My Personal Blog') }}</title>
+       
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -70,7 +72,7 @@
         <!-- Hero Section -->
         <section class="bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] py-20 px-6">
             <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                <h1 class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto text-center font-bold italic" style="font-family: 'Times New Roman', serif;">
                     Create a blog<br>
                     worth sharing
                 </h1>
