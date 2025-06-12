@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head> 
-        <h1> Create a Blog Worth Sharing</h1>
+ 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,6 +17,26 @@
 
         @endif
     </head>
+    <style>
+    :root {
+        --bg-main: #fffbe6; /* Light yellow by default */
+        --bg-box: #ffffff;  /* White box background */
+    }
+
+    .dark {
+        --bg-main: #1a1a12;
+        --bg-box: #23231c;
+    }
+
+    body {
+        background-color: var(--bg-main);
+    }
+
+    .blog-box {
+        background-color: var(--bg-box);
+    }
+</style>
+
     <body class="bg-yellow-100 dark:bg-yellow-900 text-[#1b1b18] flex flex-col min-h-screen">
         <!-- Header with Navigation -->
         <header class="w-full bg-white dark:bg-[#161615] shadow-sm border-b border-[#e3e3e0] dark:border-[#3E3E3A]">
