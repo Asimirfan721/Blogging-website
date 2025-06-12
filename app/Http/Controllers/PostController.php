@@ -87,31 +87,8 @@ class PostController extends Controller
 
         return view('posts.show', compact('post')); // Pass the post object to the view
     }
-    public function edit(Post $post)
-{
-    // Only the post owner can access the edit form
-    if (Auth::id() !== $post->user_id) {
-        abort(403); // Forbidden
-    }
-
-    return view('posts.edit', compact('post'));
-}
-public function update(Request $request, Post $post)
-{
-    if (Auth::id() !== $post->user_id) {
-        abort(403);
-    }
-
-    $validatedData = $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-    ]);
-
-    $post->update($validatedData);
-
-    return redirect()->route('posts.show', $post->id)->with('success', 'Post updated successfully.');
-}
-
+    
+ 
 
 
     // You can add edit and delete methods here later if needed
