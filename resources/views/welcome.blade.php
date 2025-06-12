@@ -19,7 +19,7 @@
     </head>
     <style>
     :root {
-        --bg-main: #fffbe6; /* Light yellow by default */
+        --bg-main: #f0dc7c; /* Light yellow by default */
         --bg-box: #ffffff;  /* White box background */
     }
 

@@ -22,6 +22,7 @@
                 @auth
                     <a href="/" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
                        > Home</a>
+                       
         </h2>
         @else
                     <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
@@ -31,6 +32,7 @@
                     @endif
                 @endauth
             </div>
+            
         @endif
 
         <div class="max-w-4xl mx-auto p-6 lg:p-8">
@@ -48,6 +50,15 @@
                 <a href="{{ route('home') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                     &larr; Back to Home
                 </a>
+                @auth
+    @if (Auth::id() === $post->user_id)
+        <div class="mt-4">
+            <a href="{{ route('posts.edit', $post->id) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition">
+                ✏️ Edit Post
+            </a>
+        </div>
+    @endif
+@endauth
             </div>
         </div>
     </div>
