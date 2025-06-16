@@ -7,5 +7,5 @@ $classes = ($active ?? false)
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }}>
-    @yield('content')
+    {{ $slot }}
 </a>
