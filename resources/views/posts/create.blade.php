@@ -32,10 +32,10 @@
     <x-input-label for="category" :value="__('Category')" />
    <select name="category_id" id="category_id" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
     <option value="1">Technology</option>
-    <option value="2">Education</option>
-    <option value="3">Lifestyle</option>
-    <option value="4">Travel</option>
-    <option value="5">Food</option>
+    <option value="2">History</option>
+    <option value="3">Future</option>
+    <option value="4">Religious</option>
+     
 </select>
 
     <x-input-error :messages="$errors->get('category_id')" class="mt-2" />

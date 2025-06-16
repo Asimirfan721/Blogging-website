@@ -68,6 +68,7 @@ class PostController extends Controller
                 'slug' => $slug,
                 'content' => $validatedData['content'],
                 'status' => 'published', // Automatically publish for now, can be 'draft'
+                'category_id' => $request->category_id, 
             ]);
 
            

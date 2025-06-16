@@ -18,6 +18,7 @@ class Post extends Model
         'content',
         'user_id',
         'status',
+        'category_id'
     ];
 
     /**
