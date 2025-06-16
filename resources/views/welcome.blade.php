@@ -44,6 +44,7 @@
                             
                         </div>
                     </nav>
+                    
 
                     <!-- Auth Navigation -->
                     @if (Route::has('login'))

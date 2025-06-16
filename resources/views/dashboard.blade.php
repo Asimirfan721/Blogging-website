@@ -1,7 +1,11 @@
+
 <x-app-layout>
-    <x-slot name="header">
+    
+    <x-slot name="header"> 
+        <a href="/" class="inline-block px-5 py-1.5 border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] rounded-sm text-sm leading-normal"
+            > Home</a>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashb oard') }}
+            {{ __('Dashboard') }}
         </h2>
     </x-slot>
 

@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str; // Import Str for slug generation
 use Illuminate\Validation\ValidationException; // Import for validation exceptions
@@ -32,7 +34,8 @@ class PostController extends Controller
     public function create()
     {
          
-        return view('posts.create'); // Points to resources/views/posts/create.blade.php
+           $categories = Category::all();
+    return view('posts.create', compact('categories')); // Points to resources/views/posts/create.blade.php
     }
 
     /**
@@ -46,6 +49,8 @@ class PostController extends Controller
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
+                
+                
             ]);
 
             // Generate a unique slug from the title
@@ -88,8 +93,16 @@ class PostController extends Controller
         return view('posts.show', compact('post')); // Pass the post object to the view
     }
     
- 
+  public function byCategory($id)
+{
+    $posts = Post::where('category_id', $id)->latest()->paginate(6);
+    $category = Category::findOrFail($id);
+    return view('home', compact('posts', 'category'));
+}
 
+  
+  
+  
 
     // You can add edit and delete methods here later if needed
 }
