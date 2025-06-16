@@ -1,114 +1,102 @@
 <?php
-// app/Http/Controllers/PostController.php
 
 namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Import Str for slug generation
-use Illuminate\Validation\ValidationException; // Import for validation exceptions
-use Illuminate\Support\Facades\Auth; // Import Auth for current user
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the posts (for the homepage).
+     * Display a listing of published posts.
      */
     public function index()
     {
-        // Fetch only published posts, ordered by creation date descending
-        $posts = Post::with('user') // Eager load the user relationship to get author's name
-                     ->where('status', 'published')
-                     ->latest() // Orders by 'created_at' in descending order
-                     ->paginate(10); // Paginate results for better performance
+        $posts = Post::with('user')
+            ->where('status', 'published')
+            ->latest()
+            ->paginate(10);
 
-        return view('welcome', compact('posts')); // Pass posts to the welcome view
+        return view('welcome', compact('posts'));
     }
 
     /**
      * Show the form for creating a new post.
-     * This method requires authentication.
      */
     public function create()
     {
-         
-           $categories = Category::all();
-    return view('posts.create', compact('categories')); // Points to resources/views/posts/create.blade.php
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
     }
 
     /**
      * Store a newly created post in storage.
-     * This method requires authentication.
      */
     public function store(Request $request)
     {
         try {
-            // Validate the incoming request data
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
-                
-                
+                'category_id' => 'required|exists:categories,id',
             ]);
 
-            // Generate a unique slug from the title
             $slug = Str::slug($validatedData['title']);
             $originalSlug = $slug;
             $count = 1;
+
             while (Post::where('slug', $slug)->exists()) {
                 $slug = $originalSlug . '-' . $count++;
             }
 
-            // Create the post
             Post::create([
-                'user_id' => Auth::id(), // Assign the authenticated user's ID
-                'title' => $validatedData['title'],
-                'slug' => $slug,
-                'content' => $validatedData['content'],
-                'status' => 'published', // Automatically publish for now, can be 'draft'
-                'category_id' => $request->category_id, 
+                'user_id'     => Auth::id(),
+                'title'       => $validatedData['title'],
+                'slug'        => $slug,
+                'content'     => $validatedData['content'],
+                'status'      => 'published',
+                'category_id' => $validatedData['category_id'],
             ]);
 
-           
             return redirect()->route('home')->with('success', 'Post created successfully!');
-
         } catch (ValidationException $e) {
-      
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }
 
     /**
      * Display the specified post.
-     * This method is public (no authentication required)
      */
-    public function show(Post $post) // Route model binding automatically fetches the post by slug or ID
+    public function show(Post $post)
     {
-        // If you only want published posts to be accessible publicly by slug:
-        if ($post->status !== 'published' && (!Auth::check() || Auth::id() !== $post->user_id)) {
-            abort(404); // Or redirect to a login page
+        if (
+            $post->status !== 'published' &&
+            (!Auth::check() || Auth::id() !== $post->user_id)
+        ) {
+            abort(404);
         }
 
-        return view('posts.show', compact('post')); // Pass the post object to the view
+        return view('posts.show', compact('post'));
     }
-    
-  public function byCategory($id)
-{
-    $category = Category::findOrFail($id); // This throws 404 if not found
-    $posts = Post::where('category_id', $id)
-                ->where('status', 'published')
-                ->latest()
-                ->paginate(6);
 
-    $categories = Category::all(); // optional, for nav
-    return view('welcome', compact('posts', 'category', 'categories'));
-}
+    /**
+     * Display posts filtered by category.
+     */
+    public function byCategory($id)
+    {
+        $category = Category::findOrFail($id);
 
-  
-  
-  
+        $posts = Post::where('category_id', $id)
+            ->where('status', 'published')
+            ->latest()
+            ->paginate(6);
 
-    // You can add edit and delete methods here later if needed
+        $categories = Category::all();
+
+        return view('welcome', compact('posts', 'category', 'categories'));
+    }
 }
