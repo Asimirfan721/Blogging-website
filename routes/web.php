@@ -51,7 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update'); // Use PUT for updates
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
- 
+    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+    
 });
 
 // Laravel Breeze Authentication Routes
