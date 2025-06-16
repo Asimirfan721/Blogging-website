@@ -29,18 +29,10 @@
                             BlogSite
                         </a>
                         <div class="hidden md:flex space-x-6">
-                            <a href="#" class="text-[#1b1b18] dark:text-[#EDEDEC] hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors">
-                                Technology
-                            </a>
-                            <a href="#" class="text-[#1b1b18] dark:text-[#EDEDEC] hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors">
-                                History
-                            </a>
-                            <a href="#" class="text-[#1b1b18] dark:text-[#EDEDEC] hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors">
-                                Future
-                            </a>
-                            <a href="#" class="text-[#1b1b18] dark:text-[#EDEDEC] hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors">
-                                Religious
-                             </a>
+                            <a href="{{ route('posts.byCategory', 1) }}">Technology</a>
+    <a href="{{ route('posts.byCategory', 2) }}">History</a>
+    <a href="{{ route('posts.byCategory', 3) }}">Future</a>
+    <a href="{{ route('posts.byCategory', 4) }}">Religious</a>
                             
                         </div>
                     </nav>

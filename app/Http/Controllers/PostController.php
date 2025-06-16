@@ -96,9 +96,14 @@ class PostController extends Controller
     
   public function byCategory($id)
 {
-    $posts = Post::where('category_id', $id)->latest()->paginate(6);
-    $category = Category::findOrFail($id);
-    return view('home', compact('posts', 'category'));
+    $category = Category::findOrFail($id); // This throws 404 if not found
+    $posts = Post::where('category_id', $id)
+                ->where('status', 'published')
+                ->latest()
+                ->paginate(6);
+
+    $categories = Category::all(); // optional, for nav
+    return view('welcome', compact('posts', 'category', 'categories'));
 }
 
   
