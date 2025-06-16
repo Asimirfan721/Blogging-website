@@ -40,7 +40,8 @@
                             </a>
                             <a href="#" class="text-[#1b1b18] dark:text-[#EDEDEC] hover:text-[#f53003] dark:hover:text-[#FF4433] transition-colors">
                                 Religious
-                            </a>
+                             </a>
+                            
                         </div>
                     </nav>
 
@@ -62,6 +63,7 @@
                                     <a href="{{ route('register') }}" class="inline-block px-4 py-2 bg-[#f53003] hover:bg-[#d42802] text-white rounded-md text-sm font-medium transition-colors">
                                         Sign Up
                                     </a>
+                                    
                                 @endif
                             @endauth
                         </nav>
